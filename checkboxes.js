@@ -1,42 +1,33 @@
 $('document').ready(function(){
 
-//alert('töötab');
-//var checkBox = $('input:checkbox:visible');
-//var checkBoxCount = checkBox.length;
-//var lastCheckboxClickedIndex = undefined;
+
 var lastCheckboxClickedIndex = undefined;
-// Otsime igaks juhuks uuesti märkeruudud üles (kui olid enne näiteks peidetud)
+// Find all checkboxes (in case they were hidden before)
 $('input:checkbox').click(function(e){
     var checkBox = $('input:checkbox:visible');
     var checkBoxCount = checkBox.length;
-    //console.log("$('input:checkbox').click");
-    //console.log('checkboxe: '+checkBox.length);
-
-
-//console.log('töötab');
-//checkBox.click(function(e){
-    //console.log('checkBox.click');
+	
+	// Get the index of the checkbox
+	// if user clicks on checkbox without shift-key
+	// (that's the first checkbox to start from)
     if(!e.shiftKey){
 	   lastCheckboxClickedIndex = checkBox.index(this);
-       //console.log('lastCheckboxClickedIndex: '+lastCheckboxClickedIndex);
-       //console.log('count: '+checkBoxCount);
     }
+	// If user holds shift-key
     else if(e.shiftKey){
-        //console.log('e.shiftkey haru');
-        // viimase märkeruudu indeks, millel klikiti
+        // Index of the last checkbox that was clicked on
         var toCheckboxIndex = checkBox.index(this);
-        //console.log('toCheckboxIndex: '+toCheckboxIndex);
-        //console.log('checkBox.get(lastCheckboxClickedIndex).checked: '+checkBox.get(lastCheckboxClickedIndex).checked);
-        if(checkBox.get(lastCheckboxClickedIndex).checked == true){
-            //console.log('checkBox.checked == true haru');
+        // If last checkbox was checked
+		if(checkBox.get(lastCheckboxClickedIndex).checked == true){
             for(i=lastCheckboxClickedIndex; i <= toCheckboxIndex; i++){
                 var checkb = checkBox.get(i);
                 checkb.checked = true;
+				// Custom code for special pages
                 $(checkb).closest("tr").find("input[name$='[salvestada]']").val("t");
             }
         }
         else{
-            //console.log('checkBox.checked == false haru');
+            // If checkbox was unchecked
             for(i=lastCheckboxClickedIndex; i <= toCheckboxIndex; i++){
                 var checkb = checkBox.get(i);
                 checkb.checked = false;
@@ -44,8 +35,6 @@ $('input:checkbox').click(function(e){
             }
         }
     }
-    
-//})
 })
 
 })
