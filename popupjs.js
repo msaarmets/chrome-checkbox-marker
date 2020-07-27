@@ -18,7 +18,7 @@ function sendAjax() {
     var url = tabs[0].url;
     var email = document.getElementById('email_input').value;
     var params = JSON.stringify({ "url": url, "email": email });
-    xhttp.open("POST", "https://blindbow.com/api/new_feedback", true);
+    xhttp.open("POST", "https://checkboxer.blind.ee/api/new_feedback", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send(params);
 
