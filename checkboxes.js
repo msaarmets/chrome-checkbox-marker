@@ -4,7 +4,6 @@ var lastCheckboxClickedIndex = undefined;
 var autoClick = false;
 
 $("document").ready(function () {
-	console.log("start");
 	// 2. Get first click (without shift-key) and first checkbox index
 	$("input:checkbox:visible").click(function (e) {
 		var checkBoxes = $("input:checkbox:visible");
@@ -21,6 +20,9 @@ $("document").ready(function () {
 			}
 		}
 	});
+
+	// Check by mouse click-dragging
+	$("input:checkbox").dragCheck();
 });
 
 // 4. Click all checkboxes from first to last

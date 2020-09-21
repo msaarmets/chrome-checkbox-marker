@@ -17,7 +17,7 @@ function sendAjax() {
 		// Send data by Ajax
 		var url = tabs[0].url;
 		var email = document.getElementById("email_input").value;
-		var params = JSON.stringify({ url: url, email: email });
+		var params = JSON.stringify({ url: url, email: email, browser: "Chrome" });
 		xhttp.open("POST", "https://www.blindbow.tk/api/new_feedback", true);
 		xhttp.setRequestHeader("Content-Type", "application/json");
 		xhttp.send(params);
